@@ -1,561 +1,74 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atelier Durable – Créations Écologiques en PVC</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-    
-    :root {
-      --primary: #8BA888;
-      --secondary: #D4C9B9;
-      --accent: #E8A87C;
-      --dark: #3D3D3D;
-      --light: #FAF5EF;
-    }
-    
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--light);
-      color: var(--dark);
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
-    
-    .navbar {
-      background-color: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .navbar.scrolled {
-      background-color: rgba(255, 255, 255, 0.98);
-      padding: 10px 0;
-    }
-    
-    .nav-link {
-      position: relative;
-      transition: color 0.3s;
-    }
-    
-    .nav-link:hover {
-      color: var(--accent);
-    }
-    
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background-color: var(--accent);
-      transition: width 0.3s;
-    }
-    
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    
-    .hero {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      position: relative;
-    }
-    
-    .hero-content {
-      animation: fadeIn 1.5s ease;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .product-card {
-      transition: all 0.3s ease;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
-    
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    }
-    
-    .product-img {
-      height: 250px;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    
-    .product-card:hover .product-img {
-      transform: scale(1.05);
-    }
-    
-    .feature-icon {
-      width: 80px;
-      height: 80px;
-      background-color: var(--primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      color: white;
-      font-size: 30px;
-      transition: all 0.3s ease;
-    }
-    
-    .feature-item:hover .feature-icon {
-      background-color: var(--accent);
-      transform: rotate(15deg) scale(1.1);
-    }
-    
-    .btn-primary {
-      background-color: var(--primary);
-      color: white;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-primary:hover {
-      background-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .btn-outline {
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      transition: all 0.3s ease;
-    }
-    
-    .btn-outline:hover {
-      background-color: var(--primary);
-      color: white;
-      transform: translateY(-3px);
-    }
-    
-    .floating {
-      animation: floating 3s ease-in-out infinite;
-    }
-    
-    @keyframes floating {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
-    }
-    
-    .testimonial-card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-    }
-    
-    .testimonial-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-    
-    .newsletter-input {
-      border: 2px solid var(--primary);
-      transition: all 0.3s ease;
-    }
-    
-    .newsletter-input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(232, 168, 124, 0.3);
-    }
-    
-    .footer {
-      background-color: var(--dark);
-      color: white;
-    }
-    
-    .footer-link {
-      transition: color 0.3s ease;
-    }
-    
-    .footer-link:hover {
-      color: var(--accent);
-    }
-    
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-    
-    .social-icon:hover {
-      background-color: var(--accent);
-      transform: translateY(-3px);
-    }
-    
-    /* Mobile menu */
-    .mobile-menu {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-    }
-    
-    .mobile-menu.active {
-      max-height: 500px;
-    }
-    
-    /* Back to top button */
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      width: 50px;
-      height: 50px;
-      background-color: var(--primary);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      z-index: 999;
-    }
-    
-    .back-to-top.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .back-to-top:hover {
-      background-color: var(--accent);
-      transform: translateY(-5px);
-    }
-  </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101a17">
+<meta name="description" content="Atelier Durable — objets décoratifs et créations utiles fabriqués à partir de matériaux d'impression revalorisés en Belgique.">
+<title>Atelier Durable — Le design a une seconde vie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#17221d;--forest:#254b3a;--lime:#d6ff75;--paper:#f5f4ee;--muted:#6b756e;--line:#dfe4dc;--white:#fff;--radius:22px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}.wrap{width:min(1160px,calc(100% - 40px));margin:auto}.topbar{background:var(--ink);color:#fff;font-size:12px;letter-spacing:.08em;text-align:center;padding:10px 15px}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-weight:800;font-size:20px;letter-spacing:-.7px}.brand-mark{width:34px;height:34px;background:var(--lime);border-radius:12px;display:grid;place-items:center;color:var(--ink);font-weight:900}.navlinks{display:flex;align-items:center;gap:28px;font-size:14px}.navlinks a:hover{opacity:.65}.navcta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:13px 20px;background:var(--lime);color:var(--ink);font-weight:700;transition:transform .2s,background .2s}.btn:hover,.navcta:hover{transform:translateY(-2px);background:#c5f15f}.btn-dark{background:var(--ink);color:#fff}.btn-dark:hover{background:var(--forest)}.menu-btn{display:none;background:none;border:0;font-size:25px}.hero{padding:34px 0 76px}.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;min-height:540px;background:var(--forest);border-radius:30px;overflow:hidden;color:#fff}.hero-copy{padding:clamp(32px,6vw,76px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}.eyebrow{display:inline-flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;color:var(--lime)}.dot{width:7px;height:7px;border-radius:50%;background:var(--lime)}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Manrope,sans-serif;letter-spacing:-.045em}h1{font-size:clamp(42px,5.3vw,70px);line-height:1.02;margin:22px 0}.hero-copy p{color:#d9e2db;line-height:1.75;font-size:16px;max-width:430px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.btn-ghost{border:1px solid #ffffff66;color:#fff;background:transparent}.hero-visual{position:relative;min-height:360px;background:#d5dfcc;overflow:hidden}.hero-visual img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}.visual-note{position:absolute;bottom:22px;left:22px;background:#fff;color:var(--ink);padding:13px 16px;border-radius:15px;font-size:12px;box-shadow:0 10px 30px #0002}.visual-note strong{display:block;font-size:15px;margin-bottom:3px}.trust-row{display:flex;gap:24px;flex-wrap:wrap;padding:23px 0 0;color:var(--muted);font-size:12px}.trust-row span{display:flex;align-items:center;gap:8px}.trust-row b{color:var(--forest);font-size:16px}.section{padding:75px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:30px}.section-head h2{font-size:clamp(32px,4vw,48px);margin:10px 0 0}.section-head p{max-width:410px;color:var(--muted);line-height:1.7;margin-bottom:4px}.label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--forest)}.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.product{background:#fff;border:1px solid #e9ece5;border-radius:22px;overflow:hidden;transition:transform .25s,box-shadow .25s}.product:hover{transform:translateY(-5px);box-shadow:0 18px 40px #17221d10}.product-photo{height:250px;position:relative;overflow:hidden;background:#e7e9e1}.product-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.product:hover .product-photo img{transform:scale(1.04)}.pill{position:absolute;top:14px;left:14px;background:#fff;border-radius:99px;padding:7px 10px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}.product-info{padding:21px}.product-info h3{font-size:21px;margin-bottom:8px}.product-info p{font-size:13px;line-height:1.65;color:var(--muted);min-height:42px;margin-bottom:20px}.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}.price{font-family:Manrope,sans-serif;font-size:21px;font-weight:800;letter-spacing:-.04em}.small-btn{width:39px;height:39px;border-radius:50%;background:var(--ink);color:white;border:0;font-size:20px}.small-btn:hover{background:var(--forest)}.manifesto{background:#e7ebdf}.manifesto-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}.manifesto-art{height:390px;border-radius:24px;overflow:hidden;background:#d2dfcc}.manifesto-art img{width:100%;height:100%;object-fit:cover}.manifesto h2{font-size:clamp(34px,4vw,50px);line-height:1.08;margin:16px 0}.manifesto p{color:var(--muted);line-height:1.8}.values{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:25px}.value{border-top:1px solid #c8d0c4;padding-top:14px}.value strong{display:block;font-size:13px;margin-bottom:5px}.value small{color:var(--muted);font-size:11px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step{padding:25px;border:1px solid var(--line);border-radius:20px;background:#fff}.step-no{width:38px;height:38px;border-radius:13px;background:var(--lime);display:grid;place-items:center;font-weight:800;margin-bottom:28px}.step h3{font-size:19px;margin-bottom:8px}.step p{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:0}.contact{background:var(--ink);color:#fff;padding:55px;border-radius:28px;display:flex;align-items:center;justify-content:space-between;gap:25px}.contact h2{font-size:clamp(30px,4vw,46px);margin:12px 0}.contact p{color:#c6d0c8;line-height:1.7;margin:0;max-width:530px}.footer{padding:28px 0;color:var(--muted);font-size:12px}.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}.footer .brand{color:var(--ink);font-size:16px}.admin-fab{position:fixed;right:18px;bottom:18px;z-index:40;border:1px solid #ffffff30;background:#17221dee;color:white;border-radius:99px;padding:12px 16px;font-size:12px;font-weight:700;box-shadow:0 8px 25px #0002}.admin-panel{position:fixed;z-index:50;inset:0 0 0 auto;width:min(430px,100%);background:#fff;box-shadow:-15px 0 55px #0002;transform:translateX(105%);transition:transform .25s;overflow:auto;padding:25px}.admin-panel.open{transform:translateX(0)}.admin-head{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px}.admin-head h2{font-size:22px;margin:0}.close-admin{border:0;background:#eef0eb;border-radius:50%;width:36px;height:36px;font-size:20px}.admin-intro{font-size:13px;line-height:1.6;color:var(--muted)}.admin-item{border:1px solid var(--line);padding:15px;border-radius:15px;margin:14px 0}.admin-item h3{font-size:15px;margin:0 0 12px}.field{display:block;font-size:11px;color:var(--muted);font-weight:700;margin:10px 0 5px}.admin-item input[type=text],.admin-item input[type=number],.admin-item textarea{width:100%;padding:10px;border:1px solid #d9dfd6;border-radius:9px;background:#fbfcf9;color:var(--ink);font-size:13px}.admin-item textarea{min-height:65px;resize:vertical}.admin-item input[type=file]{width:100%;font-size:12px}.admin-actions{display:grid;gap:9px;margin-top:20px}.admin-actions button{width:100%;border:0;border-radius:11px;padding:13px;font-weight:700;background:var(--ink);color:#fff}.admin-actions button.secondary{background:#edf0e9;color:var(--ink)}.notice{font-size:11px;line-height:1.6;color:var(--muted);margin-top:14px}.toast{position:fixed;z-index:80;bottom:80px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:99px;font-size:12px;display:none}.editing [data-editable]{outline:1px dashed #8da78e;outline-offset:3px;cursor:text}.editing [data-editable]:focus{outline:2px solid #8da78e;background:#ffffff12}.hide{display:none!important}
+@media(max-width:800px){.wrap{width:min(100% - 28px,600px)}.nav{height:68px}.navlinks{display:none;position:absolute;top:68px;left:0;right:0;padding:20px;background:var(--paper);flex-direction:column;align-items:flex-start;gap:18px;border-top:1px solid var(--line)}.navlinks.open{display:flex}.menu-btn{display:block}.navcta{display:none}.hero{padding:15px 0 45px}.hero-grid{grid-template-columns:1fr}.hero-copy{padding:36px 26px}.hero-visual{min-height:300px}.trust-row{gap:12px 20px}.section{padding:52px 0}.section-head{display:block}.section-head p{margin-top:14px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product-photo{height:190px}.product-info{padding:15px}.product-info h3{font-size:17px}.product-info p{font-size:12px;min-height:58px}.price{font-size:18px}.manifesto-grid{grid-template-columns:1fr;gap:28px}.manifesto-art{height:280px}.steps{grid-template-columns:1fr}.step{padding:20px}.step-no{margin-bottom:18px}.contact{padding:30px 24px;display:block}.contact .btn{margin-top:22px}.values{gap:12px}.footer-inner{align-items:flex-start;flex-direction:column}.admin-fab{right:12px;bottom:12px}}@media(max-width:430px){.products{grid-template-columns:1fr}.product-photo{height:250px}.product-info p{min-height:0}.hero-actions .btn{width:100%}}
+</style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar fixed w-full z-50">
-    <div class="container mx-auto px-4 py-4">
-      <div class="flex justify-between items-center">
-        <a href="#" class="text-2xl font-bold text-gray-800">
-          <span class="text-primary">Atelier</span> Durable
-        </a>
-        
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex space-x-8">
-          <a href="#home" class="nav-link text-gray-700 hover:text-primary">Accueil</a>
-          <a href="#products" class="nav-link text-gray-700 hover:text-primary">Produits</a>
-          <a href="#customization" class="nav-link text-gray-700 hover:text-primary">Personnalisation</a>
-          <a href="#about" class="nav-link text-gray-700 hover:text-primary">À propos</a>
-          <a href="#contact" class="nav-link text-gray-700 hover:text-primary">Contact</a>
-          <a href="#" class="text-gray-700 hover:text-primary">
-            <i class="fas fa-shopping-cart"></i>
-          </a>
-        </div>
-        
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
-          <i class="fas fa-bars text-2xl"></i>
-        </button>
-      </div>
-      
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="mobile-menu md:hidden">
-        <div class="flex flex-col space-y-4 mt-4">
-          <a href="#home" class="text-gray-700 hover:text-primary">Accueil</a>
-          <a href="#products" class="text-gray-700 hover:text-primary">Produits</a>
-          <a href="#customization" class="text-gray-700 hover:text-primary">Personnalisation</a>
-          <a href="#about" class="text-gray-700 hover:text-primary">À propos</a>
-          <a href="#contact" class="text-gray-700 hover:text-primary">Contact</a>
-          <a href="#" class="text-gray-700 hover:text-primary">
-            <i class="fas fa-shopping-cart"></i> Panier
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section with Video Background -->
-  <section id="home" class="hero relative overflow-hidden">
-    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
-      <source src="photos/UV printing on puzzles by KGT-LE-2513.mp4" type="video/mp4">
-      <!-- Fallback image if video doesn't load -->
-      <img src="photos/entreprise-1.png" alt="UV Printer in action" class="absolute w-full h-full object-cover"> 
-    </video>
-    <div class="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
-    <div class="hero-content px-4 relative z-20">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6">Creative Products from Repurposed Materials.<span class="text-accent"></span></h1>
-      <p class="text-xl md:text-2xl mb-8">Créations personnalisées en Papier, PVC & vinyle recyclé</p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a href="#products" class="btn-primary px-8 py-3 rounded-full font-semibold">Découvrir nos produits</a>
-        <a href="#customization" class="btn-outline px-8 py-3 rounded-full font-semibold">Personnaliser</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features Section -->
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="feature-item text-center p-6">
-          <div class="feature-icon">
-            <i class="fas fa-leaf"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Écologique</h3>
-          <p class="text-gray-600">transforme des matériels neuves mais inutilisées – destinées à la benne ou au recyclage – en produits créatifs et durables, pour un impact minimal sur l'environnement.</p>
-        </div>
-        <div class="feature-item text-center p-6">
-          <div class="feature-icon">
-            <i class="fas fa-palette"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Personnalisable</h3>
-          <p class="text-gray-600">Créez des pièces uniques qui reflètent votre style personnel.</p>
-        </div>
-        <div class="feature-item text-center p-6">
-          <div class="feature-icon">
-            <i class="fas fa-heart"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Fait avec le coeur</h3>
-          <p class="text-gray-600">Chaque pièce est fabriquée avec soin et attention.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Products Section -->
-  <section id="products" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">🌟 Nos Produits Populaires</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Découvrez nos créations uniques fabriquées à partir de matériaux neuves mais inutilisées.</p>
-      </div>
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        <!-- Product 1 -->
-        <div class="product-card bg-white">
-          <div class="overflow-hidden">
-            <img src="./photos/cat puzzle.png"></img>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Puzzle Animal</h3>
-            <p class="text-gray-600 mb-4">Puzzle éducatif avec impression UV sur forex 3mm.</p>
-            <div class="flex justify-between items-center">
-              <span class="text-primary font-bold text-lg">24,90 €</span>
-              <button class="btn-primary px-4 py-2 rounded-full text-sm">Ajouter au panier</button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Product 2 -->
-        <div class="product-card bg-white">
-          <div class="overflow-hidden">
-            <img src="photos/Botanique.png">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Affiche Monstera</h3>
-            <p class="text-gray-600 mb-4">Affiche botanique imprimée sur Forex 3mm </p>
-            <div class="flex justify-between items-center">
-              <span class="text-primary font-bold text-lg">14,90 €</span>
-              <button class="btn-primary px-4 py-2 rounded-full text-sm">Ajouter au panier</button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Product 3 -->
-        <div class="product-card bg-white">
-          <div class="overflow-hidden">
-            <img src="photos/Screenshot 2025-08-15 at 15.14.30.png"><img src="" alt="">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Plaque 'porte'</h3>
-            <p class="text-gray-600 mb-4">Plaque de porte personnalisable en forex </p>
-            <div class="flex justify-between items-center">
-              <span class="text-primary font-bold text-lg">19,90 €</span>
-              <button class="btn-primary px-4 py-2 rounded-full text-sm">Ajouter au panier</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card bg-white">
-          <div class="overflow-hidden">
-            <img src="photos/menu forex -1.png"><img src="" alt="">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">plaque forex 'Menu'</h3>
-            <p class="text-gray-600 mb-4">Menu personnalisable en forex </p>
-            <div class="flex justify-between items-center">
-              <span class="text-primary font-bold text-lg">19,90 €</span>
-              <button class="btn-primary px-4 py-2 rounded-full text-sm">Ajouter au panier</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card bg-white">
-          <div class="overflow-hidden">
-            <img src="photos/Marcador de pagina.jpg"><img src="" alt="">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Papier 'Marqueur de page'</h3>
-            <p class="text-gray-600 mb-4">Marqueur de page personnalisable en papier </p>
-            <div class="flex justify-between items-center">
-              <span class="text-primary font-bold text-lg">19,90 €</span>
-              <button class="btn-primary px-4 py-2 rounded-full text-sm">Ajouter au panier</button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Product 6 -->
-        <div class="product-card bg-white">
-          <div class="overflow-hidden">
-            <img src="./photos/vinil.png" alt=""></img>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">Vinyle</h3>
-            <p class="text-gray-600 mb-4">Vinyle à adhérence moyenne et élevée pour nettoyer les vêtements des poils d'animaux</p>
-            <div class="flex justify-between items-center">
-              <span class="text-primary font-bold text-lg">À partir de 12,00 €</span>
-              <button class="btn-primary px-4 py-2 rounded-full text-sm">Personnaliser</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-
-      </div>
-      
-      <div class="text-center mt-12">
-        <a href="#" class="btn-outline px-8 py-3 rounded-full font-semibold inline-block">Voir tous les produits</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Customization Section -->
-  <section id="customization" class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">🎁 Personnalisation Facile</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Créez des pièces uniques en seulement 3 étapes simples</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        <div class="feature-item text-center p-6">
-          <div class="feature-icon">
-            <i class="fas fa-edit"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">1. Choisissez votre design</h3>
-          <p class="text-gray-600">Sélectionnez parmi nos modèles ou envoyez-nous votre propre création</p>
-        </div>
-        <div class="feature-item text-center p-6">
-          <div class="feature-icon">
-            <i class="fas fa-paint-brush"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">2. Personnalisez</h3>
-          <p class="text-gray-600">Modifiez les couleurs, textes et dimensions selon vos préférences</p>
-        </div>
-        <div class="feature-item text-center p-6">
-          <div class="feature-icon">
-            <i class="fas fa-truck"></i>
-          </div>
-          <h3 class="text-xl font-bold mb-3">3. Recevez votre création</h3>
-          <p class="text-gray-600">Fabrication rapide et livraison soignée directement chez vous</p>
-        </div>
-      </div>
-      
-      <div class="bg-primary bg-opacity-10 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
-        <div class="md:w-1/2">
-          <h3 class="text-2xl font-bold mb-4">Essayez notre configurateur en ligne</h3>
-          <p class="text-gray-700 mb-6">Visualisez en temps réel votre création personnalisée avant de passer commande.</p>
-          <button class="btn-primary px-6 py-3 rounded-full font-semibold">Lancer le configurateur</button>
-        </div>
-        <div class="md:w-1/2">
-          <img src="photos/Gemini_Generated_Image_poitxgpoitxgpoit.png" alt="Customization example" class="rounded-lg shadow-lg w-full">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row items-center gap-12">
-        <div class="md:w-1/2">
-          <img src="photos/entreprise.png" alt="Our workshop" class="rounded-lg shadow-lg w-full">
-        </div>
-        <div class="md:w-1/2">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6">🌱 Notre Histoire</h2>
-          <p class="text-gray-700 mb-4">
-            Nous sommes un  atelier basé en Belgique qui transforme des <strong class="text-primary">papier, vinyle et plaques de PVC (Forex)</strong> neuves mais inutilisées – destinées à la benne ou au recyclage – en produits créatifs et durables.
-          </p>
-          <p class="text-gray-700 mb-4">
-            Plutôt que de jeter ces matériaux vierges issus d'excédents d'impression ou de découpe, nous leur donnons une seconde vie à travers la décoration, les jeux éducatifs et les enseignes.
-          </p>
-          <p class="text-gray-700 mb-6">
-            <strong>Fabriqué avec cœur, créativité et conscience écologique.</strong>
-          </p>
-          <div class="flex flex-wrap gap-4">
-            <div class="bg-white p-4 rounded-lg shadow-sm flex items-center gap-3">
-              <div class="bg-primary bg-opacity-10 p-3 rounded-full">
-                <i class="fas fa-recycle text-primary"></i>
-              </div>
-              <span>Matériaux recyclés</span>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow-sm flex items-center gap-3">
-              <div class="bg-primary bg-opacity-10 p-3 rounded-full">
-                <i class="fas fa-leaf text-primary"></i>
-              </div>
-              <span>Éco-responsable</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">💬 Témoignages</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Ce que nos clients disent de nos créations</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="testimonial-card p-6">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-              <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Client" class="w-full h-full object-cover">
-            </div>
-            <div>
-              <h4 class="font-bold">Sophie L.</h4>
-              <div class="flex text-yellow-400">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-            </div>
-          </div>
-e porte d'entrée est magnifique ! Qualité exceptionnelle et livraison rapide. Je recommande vivement !"</p>          <p class="text-gray-600">"La plaque personnalisée pour notr
-        </div>
-        
-        
-</html>
+<div class="topbar" data-editable="true">DES CRÉATIONS PLUS RESPONSABLES · FABRIQUÉES EN BELGIQUE</div>
+<header class="wrap nav">
+<a class="brand" href="#home"><span class="brand-mark">A.</span><span data-editable="true">ATELIER DURABLE</span></a>
+<nav class="navlinks" id="navlinks"><a href="#home" data-editable="true">Accueil</a><a href="#products" data-editable="true">Les créations</a><a href="#story" data-editable="true">Notre démarche</a><a href="#custom" data-editable="true">Personnalisation</a><a href="#contact" data-editable="true">Contact</a></nav>
+<a class="navcta" href="#products" data-editable="true">Explorer la collection ↗</a><button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu">☰</button>
+</header>
+<main>
+<section class="hero wrap" id="home"><div class="hero-grid">
+<div class="hero-copy"><span class="eyebrow"><i class="dot"></i><span data-editable="true">LE DESIGN CIRCULAIRE</span></span>
+<h1 data-editable="true">Le design a<br>une seconde vie.</h1><p data-editable="true">Des matériaux d'impression inutilisés deviennent des objets utiles, des décorations et des idées qui durent. Moins de gaspillage. Plus de créativité.</p>
+<div class="hero-actions"><a class="btn" href="#products" data-editable="true">Découvrir les créations ↗</a><a class="btn btn-ghost" href="#story" data-editable="true">Notre démarche</a></div>
+</div><div class="hero-visual"><img data-image="hero" src="photos/entreprise-1.png" alt="Atelier de création et d'impression"><div class="visual-note"><strong data-editable="true">Créer autrement.</strong><span data-editable="true">Donner de la valeur à l'existant.</span></div></div>
+</div><div class="trust-row"><span><b>↻</b> <span data-editable="true">Matériaux revalorisés</span></span><span><b>✳</b> <span data-editable="true">Petites séries créatives</span></span><span><b>⌂</b> <span data-editable="true">Atelier en Belgique</span></span></div></section>
+<section class="section wrap" id="products"><div class="section-head"><div><span class="label" data-editable="true">LA COLLECTION</span><h2 data-editable="true">Des objets, une<br>nouvelle histoire.</h2></div><p data-editable="true">Découvrez des créations conçues à partir de matériaux neufs mais inutilisés. Chaque pièce leur offre une nouvelle utilité.</p></div>
+<div class="products" id="productGrid">
+<article class="product" data-product="0"><div class="product-photo"><img data-image="product0" src="photos/cat puzzle.png" alt="Puzzle animal"><span class="pill" data-editable="true">Jeux & découverte</span></div><div class="product-info"><h3 data-editable="true">Puzzle animal</h3><p data-editable="true">Puzzle éducatif avec impression UV sur plaque Forex de 3 mm.</p><div class="product-bottom"><span class="price" data-price="0">24,90 €</span><a class="small-btn" href="#contact" aria-label="Demander ce produit">↗</a></div></div></article>
+<article class="product" data-product="1"><div class="product-photo"><img data-image="product1" src="photos/Botanique.png" alt="Affiche botanique"><span class="pill" data-editable="true">Déco végétale</span></div><div class="product-info"><h3 data-editable="true">Affiche Monstera</h3><p data-editable="true">Une touche botanique imprimée sur Forex de 3 mm.</p><div class="product-bottom"><span class="price" data-price="1">14,90 €</span><a class="small-btn" href="#contact" aria-label="Demander ce produit">↗</a></div></div></article>
+<article class="product" data-product="2"><div class="product-photo"><img data-image="product2" src="photos/Screenshot 2025-08-15 at 15.14.30.png" alt="Plaque de porte"><span class="pill" data-editable="true">Sur mesure</span></div><div class="product-info"><h3 data-editable="true">Plaque de porte</h3><p data-editable="true">Une signalétique personnalisable pour votre intérieur.</p><div class="product-bottom"><span class="price" data-price="2">19,90 €</span><a class="small-btn" href="#contact" aria-label="Demander ce produit">↗</a></div></div></article>
+<article class="product" data-product="3"><div class="product-photo"><img data-image="product3" src="photos/menu forex -1.png" alt="Menu personnalisé"><span class="pill" data-editable="true">Professionnels</span></div><div class="product-info"><h3 data-editable="true">Menu sur Forex</h3><p data-editable="true">Un menu durable et personnalisé pour cafés et restaurants.</p><div class="product-bottom"><span class="price" data-price="3">19,90 €</span><a class="small-btn" href="#contact" aria-label="Demander ce produit">↗</a></div></div></article>
+<article class="product" data-product="4"><div class="product-photo"><img data-image="product4" src="photos/Marcador de pagina.jpg" alt="Marque-page"><span class="pill" data-editable="true">Papeterie</span></div><div class="product-info"><h3 data-editable="true">Marque-page</h3><p data-editable="true">Un petit objet pratique, imprimé pour accompagner vos lectures.</p><div class="product-bottom"><span class="price" data-price="4">4,90 €</span><a class="small-btn" href="#contact" aria-label="Demander ce produit">↗</a></div></div></article>
+<article class="product" data-product="5"><div class="product-photo"><img data-image="product5" src="photos/vinil.png" alt="Vinyle adhésif"><span class="pill" data-editable="true">Accessoires</span></div><div class="product-info"><h3 data-editable="true">Vinyle adhésif</h3><p data-editable="true">Vinyle à adhérence adaptée pour retirer les poils d'animaux des vêtements.</p><div class="product-bottom"><span class="price" data-price="5">À partir de 12,00 €</span><a class="small-btn" href="#contact" aria-label="Demander ce produit">↗</a></div></div></article>
+</div></section>
+<section class="section manifesto" id="story"><div class="wrap manifesto-grid"><div class="manifesto-art"><img data-image="story" src="photos/entreprise.png" alt="L'atelier de fabrication"></div><div><span class="label" data-editable="true">NOTRE PHILOSOPHIE</span><h2 data-editable="true">Le meilleur matériau est parfois celui qu'on a déjà.</h2><p data-editable="true">Atelier Durable est un atelier basé en Belgique qui revalorise du papier, du vinyle et des plaques Forex issus de surplus d'impression ou de découpe. Ces matériaux, neufs mais inutilisés, méritent mieux que de finir à la benne.</p><p data-editable="true">Nous les transformons en décoration, jeux éducatifs, signalétique et objets du quotidien. Une démarche créative qui privilégie l'ingéniosité, les petites séries et l'utilisation responsable des ressources.</p><div class="values"><div class="value"><strong data-editable="true">Réutiliser</strong><small data-editable="true">Avant de jeter</small></div><div class="value"><strong data-editable="true">Créer</strong><small data-editable="true">Avec intention</small></div><div class="value"><strong data-editable="true">Fabriquer</strong><small data-editable="true">Localement</small></div></div></div></div></section>
+<section class="section wrap" id="custom"><div class="section-head"><div><span class="label" data-editable="true">DU SUR-MESURE, SIMPLEMENT</span><h2 data-editable="true">Votre idée.<br>Notre savoir-faire.</h2></div><p data-editable="true">Un cadeau, une plaque ou un support pour votre activité ? Parlons de votre besoin et trouvons la bonne solution.</p></div><div class="steps"><div class="step"><div class="step-no">01</div><h3 data-editable="true">Choisissez un objet</h3><p data-editable="true">Partez d'un produit de la collection ou partagez votre propre idée.</p></div><div class="step"><div class="step-no">02</div><h3 data-editable="true">Personnalisons-le</h3><p data-editable="true">Discutez du texte, du visuel, des dimensions et du matériau souhaité.</p></div><div class="step"><div class="step-no">03</div><h3 data-editable="true">Recevez une offre</h3><p data-editable="true">Nous confirmons les possibilités, le prix et le délai avant fabrication.</p></div></div></section>
+<section class="wrap" id="contact"><div class="contact"><div><span class="eyebrow"><i class="dot"></i><span data-editable="true">UN PROJET EN TÊTE ?</span></span><h2 data-editable="true">Donnons forme à<br>votre idée.</h2><p data-editable="true">Pour un objet personnalisé, une commande professionnelle ou une question sur nos matériaux, contactez-nous.</p></div><a class="btn" id="contactLink" href="mailto:bonjour@atelierd urable.be" data-editable="true">Parlons de votre projet ↗</a></div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><a class="brand" href="#home"><span class="brand-mark">A.</span><span data-editable="true">ATELIER DURABLE</span></a><span data-editable="true">Des matériaux revalorisés. Des idées qui durent.</span><span>© <span id="year"></span> Atelier Durable</span></div></footer>
+<button class="admin-fab" id="adminOpen">✦ Modifier le site</button>
+<aside class="admin-panel" id="adminPanel" aria-label="Éditeur du site"><div class="admin-head"><h2>Éditeur du site</h2><button class="close-admin" id="adminClose" aria-label="Fermer">×</button></div><p class="admin-intro">Modifiez les textes directement sur la page, ajustez les prix et remplacez les images. Vos changements sont enregistrés dans ce navigateur. Exportez une sauvegarde pour les conserver ou les transférer.</p><button class="btn btn-dark" id="editText" style="width:100%">Activer la modification des textes</button><div id="adminProducts"></div><div class="admin-item"><h3>Images principales</h3><label class="field">Photo de couverture</label><input type="file" accept="image/*" data-upload="hero"><label class="field">Photo de l'atelier / démarche</label><input type="file" accept="image/*" data-upload="story"></div><div class="admin-actions"><button id="saveSite">Enregistrer les modifications</button><button class="secondary" id="exportSite">Exporter une sauvegarde</button><button class="secondary" id="importSite">Importer une sauvegarde</button><input class="hide" id="importFile" type="file" accept="application/json,.json"><button class="secondary" id="resetSite">Réinitialiser les modifications locales</button></div><p class="notice">Important : cet éditeur ne publie pas vos changements sur GitHub/Netlify et ne les rend pas visibles aux autres visiteurs. Il sert à préparer et conserver des modifications dans votre navigateur. Pour mettre à jour le site public, il faut ensuite publier les fichiers modifiés sur GitHub.</p></aside>
+<div class="toast" id="toast"></div>
+<script>
+const STORE_KEY='atelierDurableSiteEditorV1';
+const defaults={texts:{},prices:{'0':'24,90 €','1':'14,90 €','2':'19,90 €','3':'19,90 €','4':'4,90 €','5':'À partir de 12,00 €'},images:{}};
+let siteData=loadData();let editMode=false;
+function loadData(){try{return {...structuredClone(defaults),...JSON.parse(localStorage.getItem(STORE_KEY)||'{}')}}catch(e){return structuredClone(defaults)}}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2600)}
+function applyData(){document.querySelectorAll('[data-editable]').forEach((el,i)=>{const key=String(i);if(siteData.texts[key]!==undefined)el.innerHTML=siteData.texts[key]});document.querySelectorAll('[data-price]').forEach(el=>{const k=el.dataset.price;el.textContent=siteData.prices[k]??defaults.prices[k]});document.querySelectorAll('[data-image]').forEach(el=>{const k=el.dataset.image;if(siteData.images[k])el.src=siteData.images[k]});}
+function collectText(){const out={};document.querySelectorAll('[data-editable]').forEach((el,i)=>out[String(i)]=el.innerHTML);siteData.texts=out}
+function save(){collectText();document.querySelectorAll('[data-price]').forEach(el=>siteData.prices[el.dataset.price]=el.textContent.trim());try{localStorage.setItem(STORE_KEY,JSON.stringify(siteData));toast('Modifications enregistrées dans ce navigateur.')}catch(e){toast('Stockage plein : exportez la sauvegarde ou utilisez des images plus petites.')}} 
+function openAdmin(){document.getElementById('adminPanel').classList.add('open')}
+function closeAdmin(){document.getElementById('adminPanel').classList.remove('open')}
+function buildEditor(){const host=document.getElementById('adminProducts');host.innerHTML='';document.querySelectorAll('[data-product]').forEach(card=>{const idx=card.dataset.product;const title=card.querySelector('h3').textContent;const price=siteData.prices[idx]??defaults.prices[idx];const box=document.createElement('div');box.className='admin-item';box.innerHTML='<h3>Produit '+(Number(idx)+1)+' — '+escapeHtml(title)+'</h3><label class="field">Prix affiché</label><input type="text" data-price-input="'+idx+'" value="'+escapeAttr(price)+'"><label class="field">Remplacer la photo</label><input type="file" accept="image/*" data-upload="product'+idx+'">';host.appendChild(box)});host.querySelectorAll('[data-price-input]').forEach(input=>input.addEventListener('input',()=>{const el=document.querySelector('[data-price="'+input.dataset.priceInput+'"]');if(el)el.textContent=input.value;siteData.prices[input.dataset.priceInput]=input.value}))}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function escapeAttr(s){return escapeHtml(s)}
+function resizeImage(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{const max=1400,scale=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',.82))};img.onerror=reject;img.src=reader.result};reader.onerror=reject;reader.readAsDataURL(file)})}
+document.getElementById('adminOpen').addEventListener('click',openAdmin);document.getElementById('adminClose').addEventListener('click',closeAdmin);
+document.getElementById('editText').addEventListener('click',()=>{editMode=!editMode;document.body.classList.toggle('editing',editMode);document.querySelectorAll('[data-editable]').forEach(el=>el.contentEditable=editMode?'true':'false');document.getElementById('editText').textContent=editMode?'Terminer la modification des textes':'Activer la modification des textes';if(!editMode)save()});
+document.getElementById('saveSite').addEventListener('click',save);
+document.querySelectorAll('[data-upload]').forEach(input=>input.addEventListener('change',async()=>{const file=input.files&&input.files[0];if(!file)return;if(file.size>12*1024*1024){toast('Choisissez une image de moins de 12 Mo.');input.value='';return}try{const data=await resizeImage(file);const key=input.dataset.upload;siteData.images[key]=data;const img=document.querySelector('[data-image="'+key+'"]');if(img)img.src=data;toast('Image remplacée. Cliquez sur Enregistrer pour conserver.')}catch(e){toast('Impossible de lire cette image.')}}));
+document.getElementById('exportSite').addEventListener('click',()=>{collectText();const blob=new Blob([JSON.stringify(siteData,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='atelier-durable-sauvegarde.json';a.click();URL.revokeObjectURL(url);toast('Sauvegarde exportée.')});
+document.getElementById('importSite').addEventListener('click',()=>document.getElementById('importFile').click());
+document.getElementById('importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{siteData=JSON.parse(await file.text());localStorage.setItem(STORE_KEY,JSON.stringify(siteData));location.reload()}catch(err){toast('Fichier de sauvegarde invalide.')}});
+document.getElementById('resetSite').addEventListener('click',()=>{if(confirm('Effacer les modifications enregistrées dans ce navigateur ?')){localStorage.removeItem(STORE_KEY);location.reload()}});
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));
+document.querySelectorAll('#navlinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open')));
+document.getElementById('year').textContent=new Date().getFullYear();
+applyData();buildEditor();
+</script>
+</body></html>
